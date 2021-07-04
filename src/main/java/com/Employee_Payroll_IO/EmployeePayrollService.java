@@ -6,21 +6,14 @@
  **************************************************************/
 package com.Employee_Payroll_IO;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class EmployeePayRollService {
-    public enum IOService {
-        CONSOLE_IO, FILE_IO, DB_IO, REST_IO
-    }
-    private List<EmployeePayRollData> employeePayRollList;
 
-    /**
-     * Default Constructor
-     */
-    public EmployeePayRollService() {
-    }
+    private final List<EmployeePayRollData> employeePayRollList;
 
     /**
      * Parameterized Constructor for Initializing List
@@ -51,17 +44,16 @@ public class EmployeePayRollService {
         System.out.println("\n Writing Employee Payroll Roster to Console\n" + employeePayRollList);
     }
 
-    /**
-     * main method
-     * prints welcome message
-     * in a EmployeePayRollService class created employeePayRollService object
-     */
-    public static void main(String[] args) {
-        System.out.println("Welcome to Employee Payroll service program!");
+    public static void main(String[] args) throws IOException {
+        System.out.println("Welcome to Employee Payroll Service Program");
         ArrayList<EmployeePayRollData> employeePayRollList = new ArrayList<>();
         EmployeePayRollService employeePayRollService = new EmployeePayRollService(employeePayRollList);
         Scanner consoleInputReader = new Scanner(System.in);
-        employeePayRollService.readEmployeePayRollData(consoleInputReader); // scanning input from console
-        employeePayRollService.writeEmployeePayRollData();                  // writing back to console
+        employeePayRollService.readEmployeePayRollData(consoleInputReader); // reading from console
+        employeePayRollService.writeEmployeePayRollData();                  //writing back to console
+
+
+        FileOperations fileOperations = new FileOperations();                 
+        fileOperations.fileOperationDemonstrator();
     }
 }
