@@ -14,7 +14,7 @@ package com.Employee_Payroll_IO;
  * @author rekha
  *
  */
-public class EmployeePayRollData {
+public class EmployeePayrollData {
 	/**
 	 * Instance variable id, name salary
 	 */
@@ -30,7 +30,7 @@ public class EmployeePayRollData {
 	 * @param salary
 	 */
 
-	public EmployeePayRollData(int id, String name, Double salary) {
+	public EmployeePayrollData(int id, String name, Double salary) {
 		this.id = id;
 		this.name = name;
 		this.salary = salary;
@@ -58,6 +58,10 @@ public class EmployeePayRollData {
 
 	public void setSalary(Double salary) {
 		this.salary = salary;
+	}
+
+	public String toString1() {
+		return "EmployeePayRollData{" + "id=" + id + ", name='" + name + '\'' + ", salary=" + salary + '}';
 	}
 
 	public String toString() {

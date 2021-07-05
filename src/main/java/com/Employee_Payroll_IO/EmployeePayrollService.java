@@ -11,49 +11,47 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class EmployeePayRollService {
+public class EmployeePayrollService {
+    public enum IOService {
+        CONSOLE_IO, FILE_IO
+    }
+    private final List<EmployeePayrollData> employeePayrollList;
 
-    private final List<EmployeePayRollData> employeePayRollList;
-
-    /**
-     * Parameterized Constructor for Initializing List
-     */
-    public EmployeePayRollService(List<EmployeePayRollData> employeePayRollList) {
-        this.employeePayRollList = employeePayRollList;
+    public EmployeePayrollService(List<EmployeePayrollData> employeePayrollList) {
+        this.employeePayrollList = employeePayrollList;
     }
 
-    /**
-     * to Read from the Console
-     * @param consoleInputReader Scanner Object
-     */
-    private void readEmployeePayRollData(Scanner consoleInputReader) {
-        System.out.println("Please Enter Employee Name");
+    private void readEmployeePayrollData(Scanner consoleInputReader) {
+        System.out.println("Please enter employee name");
         String name = consoleInputReader.nextLine();
-        System.out.println("Please Enter Employee ID");
+        System.out.println("Please enter employee ID");
         int id = consoleInputReader.nextInt();
-        System.out.println("Please Enter Employee Salary");
+        System.out.println("Please enter employee salary");
         double salary = consoleInputReader.nextDouble();
 
-        employeePayRollList.add(new EmployeePayRollData(id, name, salary));
+        employeePayrollList.add(new EmployeePayrollData(id, name, salary));
     }
 
-    /**
-     * to Write into the Console
-     */
-    private void writeEmployeePayRollData() {
-        System.out.println("\n Writing Employee Payroll Roster to Console\n" + employeePayRollList);
+    public void writeEmployeePayrollData(EmployeePayrollService.IOService ioService) {
+        if(ioService.equals(IOService.CONSOLE_IO)) {
+            System.out.println("\n Writing Employee Payroll Roster to Console\n" + employeePayrollList);
+        }
+        else if(ioService.equals(IOService.FILE_IO)){
+            new EmployeePayrollFileIOService().writeData(employeePayrollList);
+        }
     }
 
     public static void main(String[] args) throws IOException {
-        System.out.println("Welcome to Employee Payroll Service Program");
-        ArrayList<EmployeePayRollData> employeePayRollList = new ArrayList<>();
-        EmployeePayRollService employeePayRollService = new EmployeePayRollService(employeePayRollList);
-        Scanner consoleInputReader = new Scanner(System.in);
-        employeePayRollService.readEmployeePayRollData(consoleInputReader); // reading from console
-        employeePayRollService.writeEmployeePayRollData();                  //writing back to console
-
-
-        FileOperations fileOperations = new FileOperations();                 
+        System.out.println("Welcome to Employee Payroll service program!");
+        FileOperations fileOperations = new FileOperations();
         fileOperations.fileOperationDemonstrator();
+
+        ArrayList<EmployeePayrollData> employeePayrollList = new ArrayList<>();
+        EmployeePayrollService employeePayrollService = new EmployeePayrollService(employeePayrollList);
+        Scanner consoleInputReader = new Scanner(System.in);
+        employeePayrollService.readEmployeePayrollData(consoleInputReader);
+        employeePayrollService.writeEmployeePayrollData(IOService.CONSOLE_IO);
+
     }
+
 }

@@ -12,11 +12,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.IntStream;
 
-/**
- * @author rekha
- *
- */
 public class FileOperations {
+	
     private static final String HOME = System.getProperty("Path", "C:\\Users\\rekha\\Developer\\Employee_Payroll_IO");
     private static final String PLAY_WITH_NIO = "TempPlayGround";
 
