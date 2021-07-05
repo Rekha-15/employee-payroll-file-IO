@@ -43,15 +43,23 @@ public class EmployeePayrollService {
 
     public static void main(String[] args) throws IOException {
         System.out.println("Welcome to Employee Payroll service program!");
-        FileOperations fileOperations = new FileOperations();
-        fileOperations.fileOperationDemonstrator();
-
         ArrayList<EmployeePayrollData> employeePayrollList = new ArrayList<>();
         EmployeePayrollService employeePayrollService = new EmployeePayrollService(employeePayrollList);
         Scanner consoleInputReader = new Scanner(System.in);
         employeePayrollService.readEmployeePayrollData(consoleInputReader);
         employeePayrollService.writeEmployeePayrollData(IOService.CONSOLE_IO);
 
+        FileOperations fileOperations = new FileOperations();
+        fileOperations.fileOperationDemonstrator();
     }
 
+    public long countEntries(IOService ioService) {
+        if(ioService.equals(IOService.FILE_IO));
+        return new EmployeePayrollFileIOService().countEntries();
+    }
+
+    public void printData(IOService ioService) {
+        if(ioService.equals(IOService.FILE_IO))
+        new EmployeePayrollFileIOService().printData();
+    }
 }

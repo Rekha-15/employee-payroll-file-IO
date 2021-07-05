@@ -1,0 +1,3 @@
+ name=+'Rekha'id=1231,salary=45000.0
+ name=+'Rashmi'id=1232,salary=40000.0
+ name=+'Ramya'id=1233,salary=15000.0
